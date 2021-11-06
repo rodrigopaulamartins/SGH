@@ -1,0 +1,131 @@
+unit Form_Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.AppEvnts, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage, Vcl.Buttons, System.ImageList, Vcl.ImgList, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.Menus;
+
+type
+  TFPrincipal = class(TForm)
+    pnl_centro: TPanel;
+    PageControl1: TPageControl;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    TreeView1: TTreeView;
+    Image1: TImage;
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure TreeView1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure CriarAba(AFormClass: TFormClass);
+  end;
+
+var
+  FPrincipal: TFPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses Form_CadastroEmpresa, Form_ProntuarioPaciente, From_Login,
+  Form_CadastroUsuarios, Form_PesquisaProntuario,
+  Form_CadastroClienteFornecedor, Form_CadastroPrestadorServico,
+  Form_PesquisaCadastroConvenio, Form_PequisaDiagnosticoCid10,
+  Form_PesquisaCadastroAtoMedico;
+
+{ TFPrincipal }
+
+procedure TFPrincipal.CriarAba(AFormClass: TFormClass);
+var
+  TabSheet: TTabSheet;
+  Form: TForm;
+  i: integer;
+begin
+  // busca pelo nome. O nome da aba será "TS" + <Nome>
+  // Ex: Se o form é o TfrmClientes, a aba será TSTfrmClientes.
+  // Já o caption da aba é o mesmo do form.
+  for i := 0 to PageControl1.PageCount - 1 do
+    if PageControl1.Pages[i].Name = 'TS' + AFormClass.ClassName then
+    begin
+      // achou aba, muda foco
+      PageControl1.ActivePage := PageControl1.Pages[i];
+      Exit;
+    end;
+  // se passar daqui, aba não existe
+  TabSheet := TTabSheet.Create(Self);
+  Form := AFormClass.Create(TabSheet);
+
+  with TabSheet do
+  begin
+    PageControl := PageControl1;
+    Caption := Form.Caption;
+    Name := 'TS' + AFormClass.ClassName;
+  end;
+
+  with Form do
+  begin
+    Align := alClient;
+    BorderStyle := bsNone;
+    Parent := TabSheet;
+    Show;
+  end;
+  PageControl1.ActivePage := TabSheet;
+end;
+
+procedure TFPrincipal.SpeedButton3Click(Sender: TObject);
+begin
+   if Application.MessageBox('Tem certeza que deseja fechar o sistema?','Fechar Sistema', MB_ICONQUESTION+MB_YESNO) = IDYES then
+      Application.Terminate;
+end;
+
+procedure TFPrincipal.TreeView1Click(Sender: TObject);
+begin
+   //Formulario cadastro de empresa
+   if TreeView1.Selected.Text = 'Empresas' then
+   begin
+      CriarAba(TFCadastroEmpresa);
+   end;
+   //abre o fomulario de Prontuario
+   if TreeView1.Selected.Text = 'Prontuários' then
+   begin
+      CriarAba(TFPesquisaProntuario);
+   end;
+   //abre o fomulario de cadastro do usuário
+   if TreeView1.Selected.Text = 'Usuários' then
+   begin
+      CriarAba(TFUsuarios);
+   end;
+   //abre o fomulario de cadastro do clientes/fornecedor
+   if TreeView1.Selected.Text = 'Clientes/Fornecedor' then
+   begin
+      CriarAba(TFCadastroClienteFornecedor);
+   end;
+   //abre o fomulario de cadastro do prestador de serviço
+   if TreeView1.Selected.Text = 'Prestadores' then
+   begin
+      CriarAba(TFPesquisaPrestadorServico);
+   end;
+   //abre o fomulario de cadastro de convênios
+   if TreeView1.Selected.Text = 'Convênios' then
+   begin
+      CriarAba(TFPesquisaCadastroConvenio);
+   end;
+   //abre o fomulario de cadastro de CID-10
+   if TreeView1.Selected.Text = 'CID - 10' then
+   begin
+      CriarAba(TFPesquisaDiagnostico);
+   end;
+   //abre o fomulario de cadastro de Ato médico
+   if TreeView1.Selected.Text = 'Ato Médico' then
+   begin
+      CriarAba(TFPesqAtoMedico);
+   end;
+
+end;
+
+end.

@@ -1,0 +1,103 @@
+//botao clicar para fazer a geracao do hash
+procedure TForm1.BitBtn3Click(Sender: TObject);
+var
+  f : TextFile; // tipo texto
+  nomearquivo : String; // armazena o caminho
+  Linha : String; // lê a linha do tipo texto
+  xmlconteudo :string;
+  mTexto : TStringList;
+begin
+  try
+  Memo1.Lines.Clear;
+  nomearquivo := 'C:\Projetos\Teste.XML';
+  xmlConteudo := '';
+  AssignFile(f,nomearquivo);
+  Reset(f); //abre o arquivo para leitura;
+  mTexto := TStringList.Create;
+  mTexto.LoadFromFile(nomearquivo);
+  While not eof(f) do
+  begin
+  Readln(f,linha); //le do arquivo e desce uma linha. O conteúdo lido é transferido para a variável linha
+  xmlconteudo:=xmlconteudo+linha;
+  end;
+  while Pos('>',xmlconteudo) > 0 do
+        Delete(xmlconteudo, Pos('<',xmlconteudo),Pos('>',xmlconteudo)-Pos('<',xmlconteudo)+1);
+  finally
+    closefile(f); //fecha o handle de arquivo
+//    ShowMessage(xmlconteudo);
+try
+append(f); //abre o arquivo para escrita
+
+writeln(f,'<ans:epilogo>');
+writeln(f,'<ans:hash>'+MD5(xmlconteudo)+'</ans:hash>');
+writeln(f,'</ans:epilogo>');
+writeln(f,'</ans:mensagemTISS>');
+
+Memo1.Lines.Add(xmlconteudo);
+
+
+
+ if SaveDialog1.Execute then
+   nomearquivo := SaveDialog1.FileName;
+
+finally
+closefile(f); //fecha o handle de arquivo
+end;
+  end;
+  end;
+============================================================================
+Inclua na seção "USES" a unit "IdHashMessageDigest"
+//uses
+//IdHashMessageDigest;	
+//criar as funcoes MD5 e Tira Caracteres
+function MD5(const texto:string):string;
+var
+  idmd5 : TIdHashMessageDigest5;
+begin
+  idmd5 := TIdHashMessageDigest5.Create;
+  try
+    result := idmd5.HashStringAsHex(texto);
+  finally
+    idmd5.Free;
+  end;
+
+
+//
+function TiraPonto(valor: string): string;
+var i: integer;
+begin
+     for i := 0 to Length(valor) do
+       begin
+       if (valor[i]='.') or (valor[i]=':') or (valor[i]='-') then
+          begin
+               delete(valor,i,1);
+          end
+       end;
+       Result := valor;
+end;
+
+//posso utilizar dessa formar ou criar por writeln
+procedure TForm1.BitBtn1Click(Sender: TObject);
+var
+  XMLDocument: TXMLDocument;
+  NodeTabela, NodeRegistro, NodeEndereco: IXMLNode;
+  I: Integer;
+begin
+  XMLDocument := TXMLDocument.Create(Self);
+  try
+    XMLDocument.Active := True;
+    NodeTabela := XMLDocument.AddChild('Pessoa');
+    for I := 1 to 5 do
+    begin
+      NodeRegistro := NodeTabela.AddChild('Registro');
+      NodeRegistro.ChildValues['Id'] := I;
+      NodeRegistro.ChildValues['Codigo'] := I * I;
+      NodeRegistro.ChildValues['Nome'] := 'NOME ' + IntToStr(I);
+      NodeEndereco := NodeRegistro.AddChild('Endereco');
+      NodeEndereco.ChildValues['Logradouro'] := Format('RUA %d', [I]);
+      NodeEndereco.ChildValues['Numero'] := I * 1000;
+    end;
+    XMLDocument.SaveToFile('C:\Projetos\Teste.xml');
+  finally
+    XMLDocument.Free;
+  end;

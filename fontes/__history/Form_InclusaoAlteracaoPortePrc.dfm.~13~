@@ -1,0 +1,358 @@
+object FInclusaoAlteracaoPortePrc: TFInclusaoAlteracaoPortePrc
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  ClientHeight = 352
+  ClientWidth = 812
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnKeyPress = FormKeyPress
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnl_topo: TPanel
+    Left = 0
+    Top = 0
+    Width = 812
+    Height = 46
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 718
+    object Label1: TLabel
+      Left = 16
+      Top = 12
+      Width = 197
+      Height = 19
+      Caption = 'PORTE DE PROCEDIMENTO'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clTeal
+      Font.Height = -16
+      Font.Name = 'Roboto'
+      Font.Style = [fsBold, fsUnderline]
+      ParentFont = False
+    end
+    object btn_fechar: TSpeedButton
+      Left = 784
+      Top = 0
+      Width = 28
+      Height = 46
+      Align = alRight
+      ImageIndex = 1
+      Flat = True
+      ExplicitLeft = 744
+      ExplicitHeight = 33
+    end
+    object Panel4: TPanel
+      Left = 739
+      Top = 0
+      Width = 45
+      Height = 46
+      Align = alRight
+      BevelOuter = bvNone
+      TabOrder = 0
+      ExplicitLeft = 645
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 46
+    Width = 812
+    Height = 243
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clWindow
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Roboto'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 1
+    ExplicitTop = 52
+    ExplicitHeight = 303
+    object Label2: TLabel
+      Left = 84
+      Top = 21
+      Width = 55
+      Height = 15
+      Caption = 'Categoria'
+    end
+    object Label3: TLabel
+      Left = 363
+      Top = 21
+      Width = 31
+      Height = 15
+      Caption = 'Setor'
+    end
+    object Label4: TLabel
+      Left = 84
+      Top = 78
+      Width = 75
+      Height = 15
+      Caption = 'C'#243'digo inicial'
+      FocusControl = DBEdit1
+    end
+    object Label5: TLabel
+      Left = 234
+      Top = 78
+      Width = 66
+      Height = 15
+      Caption = 'C'#243'digo final'
+      FocusControl = DBEdit2
+    end
+    object Label6: TLabel
+      Left = 383
+      Top = 78
+      Width = 49
+      Height = 15
+      Caption = 'Vig'#234'ncia'
+      FocusControl = DBEdit3
+    end
+    object Label7: TLabel
+      Left = 532
+      Top = 78
+      Width = 59
+      Height = 15
+      Caption = 'Descri'#231#227'o'
+      FocusControl = DBEdit4
+    end
+    object Label8: TLabel
+      Left = 84
+      Top = 135
+      Width = 66
+      Height = 15
+      Caption = 'Serv. Hosp.'
+      FocusControl = DBEdit5
+    end
+    object Label9: TLabel
+      Left = 199
+      Top = 135
+      Width = 57
+      Height = 15
+      Caption = 'Serv. Prof'
+      FocusControl = DBEdit6
+    end
+    object Label10: TLabel
+      Left = 314
+      Top = 135
+      Width = 91
+      Height = 15
+      Caption = 'SP Credenciado'
+      FocusControl = DBEdit7
+    end
+    object Label11: TLabel
+      Left = 430
+      Top = 135
+      Width = 33
+      Height = 15
+      Caption = 'SADT'
+      FocusControl = DBEdit8
+    end
+    object Label12: TLabel
+      Left = 546
+      Top = 135
+      Width = 108
+      Height = 15
+      Caption = 'SADT Credenciado'
+      FocusControl = DBEdit9
+    end
+    object Label13: TLabel
+      Left = 669
+      Top = 135
+      Width = 31
+      Height = 15
+      Caption = 'Filme'
+      FocusControl = DBEdit10
+    end
+    object Edit1: TEdit
+      Left = 16
+      Top = 274
+      Width = 121
+      Height = 23
+      TabOrder = 0
+      Visible = False
+    end
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 84
+      Top = 39
+      Width = 264
+      Height = 23
+      DataField = 'idconvenio'
+      DataSource = FInclusaoAlteracaoPrestador.DCadCredenciado
+      KeyField = 'CODIGO'
+      ListField = 'RAZAO_SOCIAL'
+      TabOrder = 1
+      OnEnter = DBLookupComboBox1Enter
+      OnExit = DBLookupComboBox1Exit
+    end
+    object DBLookupComboBox2: TDBLookupComboBox
+      Left = 363
+      Top = 39
+      Width = 366
+      Height = 23
+      TabOrder = 2
+      OnEnter = DBLookupComboBox2Enter
+      OnExit = DBLookupComboBox2Exit
+    end
+    object DBEdit1: TDBEdit
+      Left = 84
+      Top = 96
+      Width = 134
+      Height = 23
+      DataField = 'cod_inicial'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 3
+      OnEnter = DBEdit1Enter
+      OnExit = DBEdit1Exit
+    end
+    object DBEdit2: TDBEdit
+      Left = 234
+      Top = 96
+      Width = 134
+      Height = 23
+      DataField = 'cod_final'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 4
+      OnEnter = DBEdit2Enter
+      OnExit = DBEdit2Exit
+    end
+    object DBEdit3: TDBEdit
+      Left = 383
+      Top = 96
+      Width = 134
+      Height = 23
+      DataField = 'dt_vigencia'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 5
+      OnEnter = DBEdit3Enter
+      OnExit = DBEdit3Exit
+    end
+    object DBEdit4: TDBEdit
+      Left = 532
+      Top = 96
+      Width = 197
+      Height = 23
+      DataField = 'descricao'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 6
+      OnEnter = DBEdit4Enter
+      OnExit = DBEdit4Exit
+    end
+    object DBEdit5: TDBEdit
+      Left = 84
+      Top = 153
+      Width = 101
+      Height = 23
+      DataField = 'vlr_sh'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 7
+      OnEnter = DBEdit5Enter
+      OnExit = DBEdit5Exit
+    end
+    object DBEdit6: TDBEdit
+      Left = 199
+      Top = 153
+      Width = 100
+      Height = 23
+      DataField = 'vlr_sp'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 8
+      OnEnter = DBEdit6Enter
+      OnExit = DBEdit6Exit
+    end
+    object DBEdit7: TDBEdit
+      Left = 314
+      Top = 153
+      Width = 100
+      Height = 23
+      DataField = 'vlr_sp_credenciado'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 9
+      OnEnter = DBEdit7Enter
+      OnExit = DBEdit7Exit
+    end
+    object DBEdit8: TDBEdit
+      Left = 430
+      Top = 153
+      Width = 100
+      Height = 23
+      DataField = 'vlr_sadt'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 10
+      OnEnter = DBEdit8Enter
+      OnExit = DBEdit8Exit
+    end
+    object DBEdit9: TDBEdit
+      Left = 546
+      Top = 153
+      Width = 109
+      Height = 23
+      DataField = 'vlr_sadt_credenciado'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 11
+      OnEnter = DBEdit9Enter
+      OnExit = DBEdit9Exit
+    end
+    object DBEdit10: TDBEdit
+      Left = 669
+      Top = 153
+      Width = 60
+      Height = 23
+      DataField = 'vlr_filme'
+      DataSource = FInclusaoAlteracaoConvenio.DCadPortePrc
+      TabOrder = 12
+      OnEnter = DBEdit10Enter
+      OnExit = DBEdit10Exit
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 289
+    Width = 812
+    Height = 63
+    Align = alBottom
+    BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
+    TabOrder = 2
+    ExplicitTop = 226
+    ExplicitWidth = 718
+    object pnl_btnconfirmar: TPanel
+      Left = 43
+      Top = 14
+      Width = 129
+      Height = 46
+      BevelInner = bvRaised
+      BevelOuter = bvNone
+      BevelWidth = 2
+      Caption = 'Confirmar'
+      Color = 16744448
+      ParentBackground = False
+      TabOrder = 0
+      OnClick = pnl_btnconfirmarClick
+    end
+    object pnl_btncancelar: TPanel
+      Left = 178
+      Top = 14
+      Width = 129
+      Height = 46
+      BevelInner = bvRaised
+      BevelOuter = bvNone
+      Caption = 'Cancelar'
+      Color = 16119285
+      ParentBackground = False
+      TabOrder = 1
+      OnClick = pnl_btncancelarClick
+    end
+  end
+end

@@ -1,0 +1,59 @@
+unit Form_InclusaoAlteracaoPortePrc;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TFInclusaoAlteracaoPortePrc = class(TForm)
+    pnl_topo: TPanel;
+    Label1: TLabel;
+    btn_fechar: TSpeedButton;
+    Panel4: TPanel;
+    Panel1: TPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Edit1: TEdit;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBEdit1: TDBEdit;
+    Panel2: TPanel;
+    pnl_btnconfirmar: TPanel;
+    pnl_btncancelar: TPanel;
+    procedure pnl_btncancelarClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FInclusaoAlteracaoPortePrc: TFInclusaoAlteracaoPortePrc;
+
+implementation
+
+{$R *.dfm}
+
+uses Form_InclusaoAlteracaoConvenio;
+
+procedure TFInclusaoAlteracaoPortePrc.FormKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if (Key = #13) then
+   begin
+      Perform(Wm_NextDlgCtl,0,0);
+   end;
+end;
+
+procedure TFInclusaoAlteracaoPortePrc.pnl_btncancelarClick(Sender: TObject);
+begin
+   FInclusaoAlteracaoConvenio.QCadPortePrc.Cancel;
+   close;
+end;
+
+end.

@@ -1,0 +1,60 @@
+unit Form_InclusaAlteracaoEspecMed;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
+  System.ImageList, Vcl.ImgList, Data.DB, ZAbstractRODataset, ZAbstractDataset,
+  ZDataset, Vcl.DBCtrls;
+
+type
+  TFInclusaoAlteracaoEspecMed = class(TForm)
+    ImageList1: TImageList;
+    ImageList2: TImageList;
+    pnl_topo: TPanel;
+    Label1: TLabel;
+    btn_fechar: TSpeedButton;
+    Bevel1: TBevel;
+    pnl_btnconfirmar: TPanel;
+    pnl_btncancelar: TPanel;
+    Panel4: TPanel;
+    Panel1: TPanel;
+    DPesqEspec: TDataSource;
+    QPesqEspec: TZQuery;
+    QPesqEspeccodigo: TIntegerField;
+    QPesqEspecdescricao: TWideStringField;
+    QPesqEspeccod_cbo: TWideStringField;
+    QPesqEspeccod_cbosus: TWideStringField;
+    Edit1: TEdit;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Label2: TLabel;
+    procedure btn_fecharClick(Sender: TObject);
+    procedure pnl_btncancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FInclusaoAlteracaoEspecMed: TFInclusaoAlteracaoEspecMed;
+
+implementation
+
+{$R *.dfm}
+
+uses Form_CadastroPrestadorServico, Form_InclusaoAlteracaoPrestador, DataModulo;
+
+procedure TFInclusaoAlteracaoEspecMed.btn_fecharClick(Sender: TObject);
+begin
+   close;
+end;
+
+procedure TFInclusaoAlteracaoEspecMed.pnl_btncancelarClick(Sender: TObject);
+begin
+   FInclusaoAlteracaoPrestador.QCadEspec.Cancel;
+   close;
+end;
+
+end.

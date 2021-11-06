@@ -1,0 +1,123 @@
+unit Form_InclusaAlteracaoAtoMedico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Vcl.DBCtrls,
+  Vcl.Mask, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
+
+type
+  TFInclusaoAlteracaoAtoMedico = class(TForm)
+    ImageList1: TImageList;
+    ImageList2: TImageList;
+    Panel1: TPanel;
+    Edit1: TEdit;
+    Panel2: TPanel;
+    pnl_topo: TPanel;
+    Label1: TLabel;
+    btn_fechar: TSpeedButton;
+    Panel4: TPanel;
+    Panel3: TPanel;
+    Panel5: TPanel;
+    QCadAtoMedico: TZQuery;
+    DCadAtoMedico: TDataSource;
+    QCadAtoMedicocodigo: TIntegerField;
+    QCadAtoMedicodescricao: TWideStringField;
+    QCadAtoMedicoidpagto: TIntegerField;
+    QCadAtoMedicotb_percentual: TFloatField;
+    QCadAtoMedicoacres_30: TWideStringField;
+    QCadAtoMedicocod_tiss3: TWideStringField;
+    QCadAtoMedicobtn_alterar: TWideStringField;
+    QCadAtoMedicobtn_excluir: TWideStringField;
+    DPesqTipoAto: TDataSource;
+    QPesqTipoAto: TZQuery;
+    Label2: TLabel;
+    DBEdit1: TDBEdit;
+    Label3: TLabel;
+    DBEdit2: TDBEdit;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Label4: TLabel;
+    Label5: TLabel;
+    DBEdit3: TDBEdit;
+    Label6: TLabel;
+    DBEdit4: TDBEdit;
+    QPesqTipoAtocodigo: TIntegerField;
+    QPesqTipoAtodescricao: TWideStringField;
+    QPesqTipoAtotip_pagato: TIntegerField;
+    QPesqTipoAtotab_perpag: TFloatField;
+    QPesqTipoAtotab_tis3: TWideStringField;
+    DBCheckBox1: TDBCheckBox;
+    procedure Panel5Click(Sender: TObject);
+    procedure btn_fecharClick(Sender: TObject);
+    procedure DBLookupComboBox1Click(Sender: TObject);
+    procedure DBEdit2Enter(Sender: TObject);
+    procedure DBEdit2Exit(Sender: TObject);
+    procedure DBLookupComboBox1Exit(Sender: TObject);
+    procedure DBLookupComboBox1Enter(Sender: TObject);
+    procedure DBEdit4Enter(Sender: TObject);
+    procedure DBEdit4Exit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FInclusaoAlteracaoAtoMedico: TFInclusaoAlteracaoAtoMedico;
+
+implementation
+
+{$R *.dfm}
+
+uses DataModulo;
+
+procedure TFInclusaoAlteracaoAtoMedico.btn_fecharClick(Sender: TObject);
+begin
+   close;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.DBEdit2Enter(Sender: TObject);
+begin
+   DBEdit2.Color := clInfoBk;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.DBEdit2Exit(Sender: TObject);
+begin
+   DBEdit2.Color := clWindow;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.DBEdit4Enter(Sender: TObject);
+begin
+   DBEdit4.Color := clInfoBk;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.DBEdit4Exit(Sender: TObject);
+begin
+   DBEdit4.Color := clWindow;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.DBLookupComboBox1Click(Sender: TObject);
+begin
+   //
+   DBEdit3.Text := QPesqTipoAto.FindField('TAB_TIS3').Value;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.DBLookupComboBox1Enter(Sender: TObject);
+begin
+   DBLookupComboBox1.Color := clInfoBk;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.DBLookupComboBox1Exit(Sender: TObject);
+begin
+   DBLookupComboBox1.Color := clWindow;
+end;
+
+procedure TFInclusaoAlteracaoAtoMedico.Panel5Click(Sender: TObject);
+begin
+   QCadAtoMedico.Cancel;
+   close;
+end;
+
+end.

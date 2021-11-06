@@ -1,0 +1,40 @@
+unit Form_InclusaoAlteracaoCredenciado;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Vcl.ExtCtrls,
+  System.ImageList, Vcl.ImgList, Vcl.DBCtrls;
+
+type
+  TFIncluscaoAlteracaoCredenciado = class(TForm)
+    ImageList1: TImageList;
+    ImageList2: TImageList;
+    Panel1: TPanel;
+    Edit1: TEdit;
+    Panel2: TPanel;
+    pnl_btnconfirmar: TPanel;
+    pnl_btncancelar: TPanel;
+    pnl_topo: TPanel;
+    Label1: TLabel;
+    btn_fechar: TSpeedButton;
+    Panel4: TPanel;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBLookupComboBox2: TDBLookupComboBox;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FIncluscaoAlteracaoCredenciado: TFIncluscaoAlteracaoCredenciado;
+
+implementation
+
+{$R *.dfm}
+
+end.

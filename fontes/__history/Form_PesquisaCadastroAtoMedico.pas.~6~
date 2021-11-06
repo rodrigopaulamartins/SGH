@@ -1,0 +1,92 @@
+unit Form_PesquisaCadastroAtoMedico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
+
+type
+  TFPesqAtoMedico = class(TForm)
+    ImageList1: TImageList;
+    ImageList2: TImageList;
+    Panel1: TPanel;
+    Label1: TLabel;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    Edit1: TEdit;
+    pnl_btnconfirmar: TPanel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    DPesqAtoMedico: TDataSource;
+    QPesqAtoMedico: TZQuery;
+    QPesqAtoMedicocodigo: TIntegerField;
+    QPesqAtoMedicodescricao: TWideStringField;
+    QPesqAtoMedicoidpagto: TIntegerField;
+    QPesqAtoMedicotb_percentual: TFloatField;
+    QPesqAtoMedicoacres_30: TWideStringField;
+    QPesqAtoMedicocod_tiss3: TWideStringField;
+    QPesqAtoMedicobtn_alterar: TWideStringField;
+    QPesqAtoMedicobtn_excluir: TWideStringField;
+    procedure pnl_btnconfirmarMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure pnl_btnconfirmarMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure SpeedButton2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FPesqAtoMedico: TFPesqAtoMedico;
+
+implementation
+
+{$R *.dfm}
+
+uses DataModulo;
+
+procedure TFPesqAtoMedico.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+   if Column.Field = QPesqAtoMedicobtn_alterar then
+   begin
+     TDBGrid(Sender).Canvas.FillRect(Rect);
+     ImageList2.Draw(TDBGrid(Sender).Canvas, Rect.Left +10,Rect.Top + 1, 1)
+   end;
+
+   if Column.Field = QPesqAtoMedicoBTN_EXCLUIR then
+   begin
+     TDBGrid(Sender).Canvas.FillRect(Rect);
+     ImageList2.Draw(TDBGrid(Sender).Canvas, Rect.Left +10,Rect.Top + 1, 0);
+   end;
+end;
+
+procedure TFPesqAtoMedico.pnl_btnconfirmarMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  pnl_btnconfirmar.Color := clMenuHighlight;
+end;
+
+procedure TFPesqAtoMedico.pnl_btnconfirmarMouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Integer);
+begin
+   pnl_btnconfirmar.Color := $00FFBE7D;
+end;
+
+procedure TFPesqAtoMedico.SpeedButton2Click(Sender: TObject);
+begin
+   QPesqAtoMedico.Close;
+   QPesqAtoMedico.SQL.Clear;
+   QPesqAtoMedico.SQL.Add('SELECT * FROM ARQ_ATOMEDICO');
+   QPesqAtoMedico.SQL.Add('WHERE DESCRICAO LIKE '+#39+'%'+Edit1.Text+'%'+#39);
+   QPesqAtoMedico.Open;
+end;
+
+end.

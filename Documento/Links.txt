@@ -1,0 +1,18 @@
+//montar as telar do programa modelo
+https://www.youtube.com/watch?v=_CLh4FtYyWY
+
+https://www.youtube.com/watch?v=MUbIZZmTuVg
+//para montar a imagem no grid 
+https://www.devmedia.com.br/quick-tips-imagem-no-dbgrid/16092
+
+//será utilizar o ACBR para fazer as validações de CPF e CNPJ
+
+//Padronização das Tabelas
+1 - Tabelas fixas SIGLA (ARQ_)
+2 - Tabelas Cadastro SIGLA (CAD_)
+
+//Deverá conter um Help para descrição das Tabelas e seu campos
+
+
+
+

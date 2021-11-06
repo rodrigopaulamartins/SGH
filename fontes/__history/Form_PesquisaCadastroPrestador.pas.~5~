@@ -1,0 +1,41 @@
+unit Form_PesquisaCadastroPrestador;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls;
+
+type
+  TFPesquisaCadastroPestrador = class(TForm)
+    pnl_topo: TPanel;
+    Label1: TLabel;
+    btn_fechar: TSpeedButton;
+    Bevel1: TBevel;
+    ImageList1: TImageList;
+    Edit1: TEdit;
+    SpeedButton2: TSpeedButton;
+    Panel1: TPanel;
+    pnl_btnconfirmar: TPanel;
+    pnl_btncancelar: TPanel;
+    procedure btn_fecharClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FPesquisaCadastroPestrador: TFPesquisaCadastroPestrador;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFPesquisaCadastroPestrador.btn_fecharClick(Sender: TObject);
+begin
+   close;
+end;
+
+end.

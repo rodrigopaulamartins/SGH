@@ -1,0 +1,52 @@
+unit Form_InclusaoAlteracaoCategoria;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList;
+
+type
+  TFInclusaoAlteracaoCategoria = class(TForm)
+    pnl_topo: TPanel;
+    Label1: TLabel;
+    btn_fechar: TSpeedButton;
+    Panel4: TPanel;
+    Panel1: TPanel;
+    Edit1: TEdit;
+    Panel2: TPanel;
+    pnl_btnconfirmar: TPanel;
+    pnl_btncancelar: TPanel;
+    ImageList1: TImageList;
+    Label2: TLabel;
+    DBEdit1: TDBEdit;
+    procedure btn_fecharClick(Sender: TObject);
+    procedure pnl_btncancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FInclusaoAlteracaoCategoria: TFInclusaoAlteracaoCategoria;
+
+implementation
+
+{$R *.dfm}
+
+uses Form_InclusaoAlteracaoConvenio;
+
+procedure TFInclusaoAlteracaoCategoria.btn_fecharClick(Sender: TObject);
+begin
+   close;
+end;
+
+procedure TFInclusaoAlteracaoCategoria.pnl_btncancelarClick(Sender: TObject);
+begin
+   FInclusaoAlteracaoConvenio.QCadCategoria.Cancel;
+   close;
+end;
+
+end.
