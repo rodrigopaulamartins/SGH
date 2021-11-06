@@ -81,6 +81,7 @@ begin
         FInclusaoAlteracaoProcedimento.ShowModal;
         FInclusaoAlteracaoProcedimento.Free;
         QPesqProcedimento.Refresh;
+
      end;
 
      if Column.Index = 3 Then
@@ -194,6 +195,7 @@ begin
    end;
    QPesqProcedimento.SQL.Add('ORDER BY PRC_ESPECI');
    QPesqProcedimento.Open;
+   //teste de atualizacao de tabelas
 end;
 
 end.
